@@ -1,0 +1,455 @@
+openapi: 3.1.0
+info:
+  title: Weightless
+  version: '1.0'
+servers:
+  - url: 'https://api.weightless.com'
+paths:
+  '/debts/{id}':
+    get:
+      summary: Retrieve a Debt
+      tags:
+        - Debts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  debt_id:
+                    type: string
+                  type:
+                    type: string
+                  subtype:
+                    type: string
+                  provider_id:
+                    type: integer
+                  provider_name:
+                    type: string
+                  apr:
+                    type: number
+                  currency:
+                    type: string
+                  current_balance:
+                    type: number
+                  last_statement_balance:
+                    type: number
+                  last_statement_issue_date:
+                    type: number
+                  minimum_payment:
+                    type: integer
+                  next_payment_due_date:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    debt_id: string
+                    type: string
+                    subtype: string
+                    provider_id: 0
+                    provider_name: string
+                    apr: 0
+                    currency: string
+                    current_balance: 0
+                    last_statement_balance: 0
+                    last_statement_issue_date: 0
+                    minimum_payment: 0
+                    next_payment_due_date: string
+      operationId: get-debts-by-id
+      description: Retrieves a debt object that you have linked.
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+  /debts:
+    get:
+      summary: List all Debts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        debt_id:
+                          type: string
+                        type:
+                          type: string
+                        subtype:
+                          type: string
+                        provider_id:
+                          type: integer
+                        provider_name:
+                          type: string
+                        apr:
+                          type: number
+                        currency:
+                          type: string
+                        current_balance:
+                          type: number
+                        last_statement_balance:
+                          type: number
+                        last_statement_issue_date:
+                          type: number
+                        minimum_payment:
+                          type: integer
+                        next_payment_due_date:
+                          type: string
+      operationId: get-debts
+      tags:
+        - Debts
+      description: Returns a list of debts that you have linked.
+  /repayments/minimum-amount:
+    get:
+      summary: Retrieve minimum Repayment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                  currency:
+                    type: string
+      operationId: get-debts-minimum-payment
+      description: Retrieve the minimum repayment amount required for each debt that you have linked.
+      tags:
+        - Repayments
+    parameters: []
+  /repayments/monthly-schedule:
+    get:
+      summary: Retrieve Monthly Schedule
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  enabled:
+                    type: boolean
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+                  day_of_month:
+                    type: integer
+              examples:
+                example-1:
+                  value:
+                    enabled: true
+                    amount: 125.45
+                    currency: usd
+                    day_of_month: 20
+      operationId: get-debts-monthly-payment
+      description: 'Retrieve the monthly payment details for debt repayments. '
+      tags:
+        - Repayments
+    put:
+      summary: Update Monthly Schedule
+      operationId: put-debts-monthly-payment
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                amount:
+                  type: number
+                currency:
+                  type: string
+                day_of_month:
+                  type: integer
+            examples:
+              example-1:
+                value:
+                  enabled: true
+                  amount: 125.45
+                  currency: usd
+                  day_of_month: 20
+      description: 'Update '
+      tags:
+        - Repayments
+    parameters: []
+  /repayments/monthly-schedule/enabled:
+    put:
+      summary: Update Monthly Schedule Enabled
+      operationId: put-debts-monthly-payment-enabled
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+            examples:
+              example-1:
+                value:
+                  enabled: true
+      description: Update the monthly payment details for debt repayments.
+      tags:
+        - Repayments
+    parameters: []
+  /repayments/recommended:
+    get:
+      summary: Retrieve recommended monthly Repayment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                  currency:
+                    type: string
+                  description:
+                    type: string
+      operationId: get-debts-recommended-monthly-payment
+      description: Retrieve the recommended monthly debt repayments. We calculate using xyz
+      tags:
+        - Repayments
+    parameters: []
+  /repayments:
+    get:
+      summary: List all Repayments
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        debt_id:
+                          type: string
+                        amount:
+                          type: number
+                        currency:
+                          type: string
+                        date_created:
+                          type: string
+              examples:
+                example-1:
+                  value:
+                    data:
+                      - debt_id: 123e4567-e89b-12d3-a456-426614174000
+                        amount: 125.45
+                        currency: usd
+                        date_created: '2020-04-13'
+      operationId: get-payments
+      description: Returns a list of debt repayments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                debt_ids:
+                  type: array
+                  items:
+                    type: string
+                count:
+                  type: integer
+                offset:
+                  type: integer
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+            examples:
+              example-1:
+                value:
+                  debt_ids:
+                    - '123'
+                    - '456'
+                  count: 100
+                  offset: 0
+                  start_date: '2020-04-13'
+                  end_date: '2020-04-13'
+                  amount: null
+      tags:
+        - Repayments
+    post:
+      summary: Create a Payment
+      operationId: post-payments
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                debt_id:
+                  type: string
+                amount:
+                  type: number
+                currency:
+                  type: string
+                date_created:
+                  type: string
+            examples:
+              example-1:
+                value:
+                  debt_id: 123e4567-e89b-12d3-a456-426614174000
+                  amount: 125.45
+                  currency: usd
+                  date_created: '2020-04-13'
+      description: Manually create a repayment towards your debts. We will calculate which debt or debts this repayment will be made towards to reduce the overall amount you need to repay to be debt free.
+      tags:
+        - Repayments
+    parameters: []
+  /link/token:
+    parameters: []
+    post:
+      summary: Create Link Token
+      operationId: post-link-token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  link_token:
+                    type: string
+                  expiration:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    link_token: link-sandbox-af1a0311-da53-4636-b754-dd15cc058176
+                    expiration: '2020-03-27T12:56:34Z'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+            examples:
+              example-1:
+                value:
+                  type: credit
+      description: 'Returns a link_token, which is required as a parameter when initializing Link. Once Link has been initialized, it returns a public_token, this should be included in a request to the /link/public_token endpoint so we can access your linked data.'
+      tags:
+        - Link
+  /link/public_token:
+    post:
+      summary: Save Link Public Token
+      operationId: post-item-public_token
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                public_token:
+                  type: string
+            examples:
+              example-1:
+                value:
+                  public_token: public-sandbox-8ab976e6-64bc-4b38-98f7-731e7a349970
+        description: ''
+      description: Save a Link public token that has been obtained from the onSuccess callback of Link. The public_token expires after 30 minutes. The public token allows us to access your linked data.
+      tags:
+        - Link
+    parameters: []
+  /tips:
+    get:
+      summary: Retrieve Tips
+      tags:
+        - Tips
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-tips
+      description: 'Retrieve the tip of the month, detailing recommendations on how you can improve your debt repayments. '
+  /repayments/debt-free:
+    get:
+      summary: Retrieve time to be debt free
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  end_date:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    end_date: '2020-04-13'
+      operationId: get-debts-debt-free
+      description: Retrieve the forecasted date to be debt free with the current monthly repayment schedule.
+      tags:
+        - Repayments
+    parameters: []
+  /refinance:
+    get:
+      summary: Retrieve refinance estimate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apr_percentage:
+                    type: number
+                  fee:
+                    type: integer
+                  currency:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    apr_percentage: 10.5
+                    fee: 25225
+                    currency: usd
+      operationId: get-refinancing
+      tags:
+        - Refinance
+    parameters: []
+components:
+  schemas: {}
