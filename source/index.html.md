@@ -5,13 +5,13 @@ language_tabs:
   - python: Python
   - javascript--node: Node.JS
   - go: Go
-  - curl: " cURL"
+  - shell: " cURL"
 language_clients:
   - ruby: ""
   - python: ""
   - javascript--node: ""
   - go: ""
-  - curl: ""
+  - shell: ""
 toc_footers: []
 includes: []
 search: true
@@ -29,6 +29,8 @@ headingLevel: 2
 Base URLs:
 
 * <a href="https://api.weightless.com">https://api.weightless.com</a>
+
+# Authentication
 
 <h1 id="weightless-debts">Debts</h1>
 
@@ -91,6 +93,13 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/debts/{id} \
+  -H 'Accept: application/json'
+
+```
+
 `GET /debts/{id}`
 
 Retrieves a debt object that you have linked.
@@ -107,18 +116,18 @@ Retrieves a debt object that you have linked.
 
 ```json
 {
-  "debt_id": "string",
-  "type": "string",
-  "subtype": "string",
-  "provider_id": 0,
-  "provider_name": "string",
-  "apr": 0,
-  "currency": "string",
-  "current_balance": 0,
-  "last_statement_balance": 0,
-  "last_statement_issue_date": 0,
-  "minimum_payment": 0,
-  "next_payment_due_date": "string"
+  "debt_id": "123e4567-e89b-12d3-a456-426614174000",
+  "type": "credit",
+  "subtype": "checking",
+  "provider_id": 12345,
+  "provider_name": "HSBC",
+  "apr": 5.5,
+  "currency": "usd",
+  "current_balance": 710.45,
+  "last_statement_balance": 710.45,
+  "last_statement_issue_date": 710.45,
+  "minimum_payment": 125.45,
+  "next_payment_due_date": "2022-05-01"
 }
 ```
 
@@ -210,30 +219,37 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/debts \
+  -H 'Accept: application/json'
+
+```
+
 `GET /debts`
 
 Returns a list of debts that you have linked.
 
 > Example responses
 
-> 200 Response
+> OK
 
 ```json
 {
   "data": [
     {
-      "debt_id": "string",
-      "type": "string",
-      "subtype": "string",
-      "provider_id": 0,
-      "provider_name": "string",
-      "apr": 0,
-      "currency": "string",
-      "current_balance": 0,
-      "last_statement_balance": 0,
-      "last_statement_issue_date": 0,
-      "minimum_payment": 0,
-      "next_payment_due_date": "string"
+      "debt_id": "123e4567-e89b-12d3-a456-426614174000",
+      "type": "credit",
+      "subtype": "checking",
+      "provider_id": 12345,
+      "provider_name": "HSBC",
+      "apr": 5.5,
+      "currency": "usd",
+      "current_balance": 710.45,
+      "last_statement_balance": 710.45,
+      "last_statement_issue_date": 710.45,
+      "minimum_payment": 125.45,
+      "next_payment_due_date": "2022-05-01"
     }
   ]
 }
@@ -330,18 +346,25 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/repayments/minimum-amount \
+  -H 'Accept: application/json'
+
+```
+
 `GET /repayments/minimum-amount`
 
 Retrieve the minimum repayment amount required for each debt that you have linked.
 
 > Example responses
 
-> 200 Response
+> OK
 
 ```json
 {
-  "amount": 0,
-  "currency": "string"
+  "amount": 125.45,
+  "currency": "usd"
 }
 ```
 
@@ -420,6 +443,13 @@ func main() {
     resp, err := client.Do(req)
     // ...
 }
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/repayments/monthly-schedule \
+  -H 'Accept: application/json'
 
 ```
 
@@ -520,6 +550,13 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X PUT https://api.weightless.com/repayments/monthly-schedule \
+  -H 'Content-Type: application/json'
+
+```
+
 `PUT /repayments/monthly-schedule`
 
 Update 
@@ -614,6 +651,13 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X PUT https://api.weightless.com/repayments/monthly-schedule/enabled \
+  -H 'Content-Type: application/json'
+
+```
+
 `PUT /repayments/monthly-schedule/enabled`
 
 Update the monthly payment details for debt repayments.
@@ -701,19 +745,26 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/repayments/recommended \
+  -H 'Accept: application/json'
+
+```
+
 `GET /repayments/recommended`
 
 Retrieve the recommended monthly debt repayments. We calculate using xyz
 
 > Example responses
 
-> 200 Response
+> OK
 
 ```json
 {
-  "amount": 0,
-  "currency": "string",
-  "description": "string"
+  "amount": 125.45,
+  "currency": "usd",
+  "description": "Increase your monthly payments by £100 to save £567 of interest payments."
 }
 ```
 
@@ -799,6 +850,14 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/repayments \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 `GET /repayments`
 
 Returns a list of debt repayments
@@ -814,8 +873,7 @@ Returns a list of debt repayments
   "count": 100,
   "offset": 0,
   "start_date": "2020-04-13",
-  "end_date": "2020-04-13",
-  "amount": null
+  "end_date": "2020-04-13"
 }
 ```
 
@@ -928,6 +986,13 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X POST https://api.weightless.com/repayments \
+  -H 'Content-Type: application/json'
+
+```
+
 `POST /repayments`
 
 Manually create a repayment towards your debts. We will calculate which debt or debts this repayment will be made towards to reduce the overall amount you need to repay to be debt free.
@@ -1018,6 +1083,13 @@ func main() {
     resp, err := client.Do(req)
     // ...
 }
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/repayments/debt-free \
+  -H 'Accept: application/json'
 
 ```
 
@@ -1114,6 +1186,14 @@ func main() {
     resp, err := client.Do(req)
     // ...
 }
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.weightless.com/link/token \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
 
 ```
 
@@ -1225,6 +1305,13 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X POST https://api.weightless.com/link/public_token \
+  -H 'Content-Type: application/json'
+
+```
+
 `POST /link/public_token`
 
 Save a Link public token that has been obtained from the onSuccess callback of Link. The public_token expires after 30 minutes. The public token allows us to access your linked data.
@@ -1315,16 +1402,25 @@ func main() {
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/tips \
+  -H 'Accept: application/json'
+
+```
+
 `GET /tips`
 
 Retrieve the tip of the month, detailing recommendations on how you can improve your debt repayments. 
 
 > Example responses
 
-> 200 Response
+> OK
 
 ```json
-{}
+{
+  "description": "You can reduce your time to be debt free by 20% with an increase of monthly payments of £55."
+}
 ```
 
 <h3 id="retrieve-tips-responses">Responses</h3>
@@ -1334,6 +1430,12 @@ Retrieve the tip of the month, detailing recommendations on how you can improve 
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
 
 <h3 id="retrieve-tips-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» description|string|false|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -1397,6 +1499,13 @@ func main() {
     resp, err := client.Do(req)
     // ...
 }
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.weightless.com/refinance \
+  -H 'Accept: application/json'
 
 ```
 
