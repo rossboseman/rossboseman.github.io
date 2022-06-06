@@ -3,13 +3,13 @@ title: Weightless v1.0
 language_tabs:
   - ruby: Ruby
   - python: Python
-  - javascript--node: Node.JS
+  - javascript: JavaScript
   - go: Go
   - shell: " cURL"
 language_clients:
   - ruby: ""
   - python: ""
-  - javascript--node: ""
+  - javascript: ""
   - go: ""
   - shell: ""
 toc_footers: []
@@ -65,6 +65,26 @@ headers = {
 r = requests.get('https://api.weightless.com/debts/{id}', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/debts/{id}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -191,6 +211,26 @@ headers = {
 r = requests.get('https://api.weightless.com/debts', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/debts',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -321,6 +361,26 @@ print(r.json())
 
 ```
 
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments/minimum-amount',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```go
 package main
 
@@ -418,6 +478,26 @@ headers = {
 r = requests.get('https://api.weightless.com/repayments/monthly-schedule', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments/monthly-schedule',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -525,6 +605,31 @@ print(r.json())
 
 ```
 
+```javascript
+const inputBody = '{
+  "enabled": true,
+  "amount": 125.45,
+  "currency": "usd",
+  "day_of_month": 20
+}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments/monthly-schedule',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```go
 package main
 
@@ -626,6 +731,28 @@ print(r.json())
 
 ```
 
+```javascript
+const inputBody = '{
+  "enabled": true
+}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments/monthly-schedule/enabled',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```go
 package main
 
@@ -717,6 +844,26 @@ headers = {
 r = requests.get('https://api.weightless.com/repayments/recommended', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments/recommended',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -821,6 +968,36 @@ headers = {
 r = requests.get('https://api.weightless.com/repayments', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+const inputBody = '{
+  "debt_ids": [
+    "123",
+    "456"
+  ],
+  "count": 100,
+  "offset": 0,
+  "start_date": "2020-04-13",
+  "end_date": "2020-04-13"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments',
+{
+  method: 'GET',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -961,6 +1138,31 @@ print(r.json())
 
 ```
 
+```javascript
+const inputBody = '{
+  "debt_id": "123e4567-e89b-12d3-a456-426614174000",
+  "amount": 125.45,
+  "currency": "usd",
+  "date_created": "2020-04-13"
+}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```go
 package main
 
@@ -1058,6 +1260,26 @@ headers = {
 r = requests.get('https://api.weightless.com/repayments/debt-free', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/repayments/debt-free',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -1160,6 +1382,29 @@ headers = {
 r = requests.post('https://api.weightless.com/link/token', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+const inputBody = '{
+  "type": "credit"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/link/token',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -1280,6 +1525,28 @@ print(r.json())
 
 ```
 
+```javascript
+const inputBody = '{
+  "public_token": "public-sandbox-8ab976e6-64bc-4b38-98f7-731e7a349970"
+}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('https://api.weightless.com/link/public_token',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```go
 package main
 
@@ -1374,6 +1641,26 @@ headers = {
 r = requests.get('https://api.weightless.com/tips', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/tips',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
@@ -1474,6 +1761,26 @@ headers = {
 r = requests.get('https://api.weightless.com/refinance', headers = headers)
 
 print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('https://api.weightless.com/refinance',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 ```
 
