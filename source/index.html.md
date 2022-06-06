@@ -163,18 +163,18 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» debt_id|string|false|none|none|
-|» type|string|false|none|none|
-|» subtype|string|false|none|none|
-|» provider_id|integer|false|none|none|
-|» provider_name|string|false|none|none|
-|» apr|number|false|none|none|
-|» currency|string|false|none|none|
-|» current_balance|number|false|none|none|
+|» debt_id|string|true|none|none|
+|» type|string|true|none|none|
+|» subtype|string|true|none|none|
+|» provider_id|integer|true|none|none|
+|» provider_name|string|true|none|none|
+|» apr|number|true|none|none|
+|» currency|string|true|none|none|
+|» current_balance|number|true|none|none|
 |» last_statement_balance|number|false|none|none|
 |» last_statement_issue_date|number|false|none|none|
-|» minimum_payment|integer|false|none|none|
-|» next_payment_due_date|string|false|none|none|
+|» minimum_payment|integer|true|none|none|
+|» next_payment_due_date|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -307,19 +307,19 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» data|[object]|false|none|none|
-|»» debt_id|string|false|none|none|
-|»» type|string|false|none|none|
-|»» subtype|string|false|none|none|
-|»» provider_id|integer|false|none|none|
-|»» provider_name|string|false|none|none|
-|»» apr|number|false|none|none|
-|»» currency|string|false|none|none|
-|»» current_balance|number|false|none|none|
+|» data|[object]|true|none|none|
+|»» debt_id|string|true|none|none|
+|»» type|string|true|none|none|
+|»» subtype|string|true|none|none|
+|»» provider_id|integer|true|none|none|
+|»» provider_name|string|true|none|none|
+|»» apr|number|true|none|none|
+|»» currency|string|true|none|none|
+|»» current_balance|number|true|none|none|
 |»» last_statement_balance|number|false|none|none|
 |»» last_statement_issue_date|number|false|none|none|
-|»» minimum_payment|integer|false|none|none|
-|»» next_payment_due_date|string|false|none|none|
+|»» minimum_payment|integer|true|none|none|
+|»» next_payment_due_date|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -440,8 +440,8 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» amount|integer|false|none|none|
-|» currency|string|false|none|none|
+|» amount|integer|true|none|none|
+|» currency|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -562,10 +562,10 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» enabled|boolean|false|none|none|
-|» amount|number|false|none|none|
-|» currency|string|false|none|none|
-|» day_of_month|integer|false|none|none|
+|» enabled|boolean|true|none|none|
+|» amount|number|true|none|none|
+|» currency|string|true|none|none|
+|» day_of_month|integer|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -682,10 +682,10 @@ Update
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|false|none|
-|» enabled|body|boolean|false|none|
-|» amount|body|number|false|none|
-|» currency|body|string|false|none|
-|» day_of_month|body|integer|false|none|
+|» enabled|body|boolean|true|none|
+|» amount|body|number|true|none|
+|» currency|body|string|true|none|
+|» day_of_month|body|integer|true|none|
 
 <h3 id="update-monthly-schedule-responses">Responses</h3>
 
@@ -802,7 +802,7 @@ Update the monthly payment details for debt repayments.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|false|none|
-|» enabled|body|boolean|false|none|
+|» enabled|body|boolean|true|none|
 
 <h3 id="update-monthly-schedule-enabled-responses">Responses</h3>
 
@@ -927,9 +927,9 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» amount|integer|false|none|none|
-|» currency|string|false|none|none|
-|» description|string|false|none|none|
+|» amount|integer|true|none|none|
+|» currency|string|true|none|none|
+|» description|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -1094,11 +1094,11 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» data|[object]|false|none|none|
-|»» debt_id|string|false|none|none|
-|»» amount|number|false|none|none|
-|»» currency|string|false|none|none|
-|»» date_created|string|false|none|none|
+|» data|[object]|true|none|none|
+|»» debt_id|string|true|none|none|
+|»» amount|number|true|none|none|
+|»» currency|string|true|none|none|
+|»» date_created|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -1142,8 +1142,7 @@ print(r.json())
 const inputBody = '{
   "debt_id": "123e4567-e89b-12d3-a456-426614174000",
   "amount": 125.45,
-  "currency": "usd",
-  "date_created": "2020-04-13"
+  "currency": "usd"
 }';
 const headers = {
   'Content-Type':'application/json'
@@ -1205,8 +1204,7 @@ Manually create a repayment towards your debts. We will calculate which debt or 
 {
   "debt_id": "123e4567-e89b-12d3-a456-426614174000",
   "amount": 125.45,
-  "currency": "usd",
-  "date_created": "2020-04-13"
+  "currency": "usd"
 }
 ```
 
@@ -1216,9 +1214,8 @@ Manually create a repayment towards your debts. We will calculate which debt or 
 |---|---|---|---|---|
 |body|body|object|false|none|
 |» debt_id|body|string|false|none|
-|» amount|body|number|false|none|
-|» currency|body|string|false|none|
-|» date_created|body|string|false|none|
+|» amount|body|number|true|none|
+|» currency|body|string|true|none|
 
 <h3 id="create-a-payment-responses">Responses</h3>
 
@@ -1341,7 +1338,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» end_date|string|false|none|none|
+|» end_date|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -1459,7 +1456,7 @@ Returns a link_token, which is required as a parameter when initializing Link. O
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|false|none|
-|» type|body|string|false|none|
+|» type|body|string|true|none|
 
 > Example responses
 
@@ -1484,8 +1481,8 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» link_token|string|false|none|none|
-|» expiration|string|false|none|none|
+|» link_token|string|true|none|none|
+|» expiration|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -1596,7 +1593,7 @@ Save a Link public token that has been obtained from the onSuccess callback of L
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|false|none|
-|» public_token|body|string|false|none|
+|» public_token|body|string|true|none|
 
 <h3 id="save-link-public-token-responses">Responses</h3>
 
@@ -1722,7 +1719,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» description|string|false|none|none|
+|» description|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -1842,9 +1839,9 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» apr_percentage|number|false|none|none|
-|» fee|integer|false|none|none|
-|» currency|string|false|none|none|
+|» apr_percentage|number|true|none|none|
+|» fee|integer|true|none|none|
+|» currency|string|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
