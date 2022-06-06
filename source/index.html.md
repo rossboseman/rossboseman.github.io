@@ -3,11 +3,15 @@ title: Weightless v1.0
 language_tabs:
   - ruby: Ruby
   - python: Python
-  - javascript: JavaScript
+  - javascript--node: Node.JS
+  - go: Go
+  - curl: " cURL"
 language_clients:
   - ruby: ""
   - python: ""
-  - javascript: ""
+  - javascript--node: ""
+  - go: ""
+  - curl: ""
 toc_footers: []
 includes: []
 search: true
@@ -62,23 +66,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/debts/{id}',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/debts/{id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -176,23 +185,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/debts',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/debts", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -291,23 +305,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/repayments/minimum-amount',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/repayments/minimum-amount", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -379,23 +398,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/repayments/monthly-schedule',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/repayments/monthly-schedule", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -471,28 +495,28 @@ print(r.json())
 
 ```
 
-```javascript
-const inputBody = '{
-  "enabled": true,
-  "amount": 125.45,
-  "currency": "usd",
-  "day_of_month": 20
-}';
-const headers = {
-  'Content-Type':'application/json'
-};
+```go
+package main
 
-fetch('https://api.weightless.com/repayments/monthly-schedule',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://api.weightless.com/repayments/monthly-schedule", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -565,25 +589,28 @@ print(r.json())
 
 ```
 
-```javascript
-const inputBody = '{
-  "enabled": true
-}';
-const headers = {
-  'Content-Type':'application/json'
-};
+```go
+package main
 
-fetch('https://api.weightless.com/repayments/monthly-schedule/enabled',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://api.weightless.com/repayments/monthly-schedule/enabled", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -649,23 +676,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/repayments/recommended',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/repayments/recommended", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -741,34 +773,29 @@ print(r.json())
 
 ```
 
-```javascript
-const inputBody = '{
-  "debt_ids": [
-    "123",
-    "456"
-  ],
-  "count": 100,
-  "offset": 0,
-  "start_date": "2020-04-13",
-  "end_date": "2020-04-13",
-  "amount": null
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-};
+```go
+package main
 
-fetch('https://api.weightless.com/repayments',
-{
-  method: 'GET',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/repayments", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -876,28 +903,28 @@ print(r.json())
 
 ```
 
-```javascript
-const inputBody = '{
-  "debt_id": "123e4567-e89b-12d3-a456-426614174000",
-  "amount": 125.45,
-  "currency": "usd",
-  "date_created": "2020-04-13"
-}';
-const headers = {
-  'Content-Type':'application/json'
-};
+```go
+package main
 
-fetch('https://api.weightless.com/repayments',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.weightless.com/repayments", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -969,23 +996,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/repayments/debt-free',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/repayments/debt-free", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -1059,26 +1091,29 @@ print(r.json())
 
 ```
 
-```javascript
-const inputBody = '{
-  "type": "credit"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-};
+```go
+package main
 
-fetch('https://api.weightless.com/link/token',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.weightless.com/link/token", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -1165,25 +1200,28 @@ print(r.json())
 
 ```
 
-```javascript
-const inputBody = '{
-  "public_token": "public-sandbox-8ab976e6-64bc-4b38-98f7-731e7a349970"
-}';
-const headers = {
-  'Content-Type':'application/json'
-};
+```go
+package main
 
-fetch('https://api.weightless.com/link/public_token',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.weightless.com/link/public_token", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -1252,23 +1290,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/tips',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/tips", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -1332,23 +1375,28 @@ print(r.json())
 
 ```
 
-```javascript
+```go
+package main
 
-const headers = {
-  'Accept':'application/json'
-};
+import (
+       "bytes"
+       "net/http"
+)
 
-fetch('https://api.weightless.com/refinance',
-{
-  method: 'GET',
+func main() {
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.weightless.com/refinance", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
